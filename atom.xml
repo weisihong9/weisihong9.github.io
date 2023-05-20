@@ -3,11 +3,11 @@
   <title>Hexo</title>
   
   
-  <link href="https://wsh.github.io/atom.xml" rel="self"/>
+  <link href="https://weisihong9.github.io/atom.xml" rel="self"/>
   
-  <link href="https://wsh.github.io/"/>
+  <link href="https://weisihong9.github.io/"/>
   <updated>2023-05-20T10:35:24.632Z</updated>
-  <id>https://wsh.github.io/</id>
+  <id>https://weisihong9.github.io/</id>
   
   <author>
     <name>John Doe</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="https://wsh.github.io/2023/05/20/hello-world/"/>
-    <id>https://wsh.github.io/2023/05/20/hello-world/</id>
+    <link href="https://weisihong9.github.io/2023/05/20/hello-world/"/>
+    <id>https://weisihong9.github.io/2023/05/20/hello-world/</id>
     <published>2023-05-20T10:35:24.631Z</published>
     <updated>2023-05-20T10:35:24.632Z</updated>
     
