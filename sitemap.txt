@@ -1,4 +1,6 @@
 https://weisihong9.github.io/tags/index.html
+https://weisihong9.github.io/repository/index.html
+https://weisihong9.github.io/categories/index.html
 https://weisihong9.github.io/2023/05/21/Using_Markdown_writing/
 https://weisihong9.github.io/2023/05/21/EMD/
 https://weisihong9.github.io/about/index.html
