@@ -1,10 +1,13 @@
+https://weisihong9.github.io/2023/05/21/EMD/
 https://weisihong9.github.io/tags/index.html
 https://weisihong9.github.io/guestbook/index.html
 https://weisihong9.github.io/repository/index.html
 https://weisihong9.github.io/categories/index.html
 https://weisihong9.github.io/2023/05/21/Using_Markdown_writing/
-https://weisihong9.github.io/2023/05/21/EMD/
 https://weisihong9.github.io/about/index.html
 https://weisihong9.github.io/2023/05/20/hello-world/
 https://weisihong9.github.io/
 https://weisihong9.github.io/tags/Markdown/
+https://weisihong9.github.io/tags/EMD/
+https://weisihong9.github.io/categories/Signal-processing/
+https://weisihong9.github.io/categories/Signal-processing/EMD/
