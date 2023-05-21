@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Hexo</title>
+  <title>WeiSH&#39;s BLOG</title>
   
-  
+  <subtitle>MaTRix</subtitle>
   <link href="https://weisihong9.github.io/atom.xml" rel="self"/>
   
   <link href="https://weisihong9.github.io/"/>
@@ -10,7 +10,7 @@
   <id>https://weisihong9.github.io/</id>
   
   <author>
-    <name>John Doe</name>
+    <name>weisihong</name>
     
   </author>
   
