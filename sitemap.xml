@@ -11,6 +11,15 @@
   </url>
   
   <url>
+    <loc>https://weisihong9.github.io/2023/07/05/CrossFrequencyCoupling/</loc>
+    
+    <lastmod>2023-07-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://weisihong9.github.io/2023/05/21/EMD/</loc>
     
     <lastmod>2023-05-21</lastmod>
@@ -92,7 +101,7 @@
 
   
   <url>
-    <loc>https://weisihong9.github.io/tags/EEG/</loc>
+    <loc>https://weisihong9.github.io/tags/BEAM/</loc>
     <lastmod>2023-07-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -115,7 +124,21 @@
 
   
   <url>
+    <loc>https://weisihong9.github.io/categories/EEG/</loc>
+    <lastmod>2023-07-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://weisihong9.github.io/categories/Signal-processing/</loc>
+    <lastmod>2023-07-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://weisihong9.github.io/categories/EEG/BEAM/</loc>
     <lastmod>2023-07-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
