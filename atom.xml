@@ -6,7 +6,7 @@
   <link href="https://weisihong9.github.io/atom.xml" rel="self"/>
   
   <link href="https://weisihong9.github.io/"/>
-  <updated>2023-07-05T05:04:15.368Z</updated>
+  <updated>2023-07-05T05:35:30.475Z</updated>
   <id>https://weisihong9.github.io/</id>
   
   <author>
@@ -21,11 +21,23 @@
     <link href="https://weisihong9.github.io/2023/07/05/CrossFrequencyCoupling/"/>
     <id>https://weisihong9.github.io/2023/07/05/CrossFrequencyCoupling/</id>
     <published>2023-07-05T05:00:49.000Z</published>
-    <updated>2023-07-05T05:04:15.368Z</updated>
+    <updated>2023-07-05T05:35:30.475Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="目的介绍跨频耦合的背景及常用的计算"><a class="markdownIt-Anchor" href="#目的介绍跨频耦合的背景及常用的计算"></a> 目的：介绍跨频耦合的背景及常用的计算。</h2><h2 id="1-背景"><a class="markdownIt-Anchor" href="#1-背景"></a> 1、背景</h2><ol><li>神经科学的核心问题之一是<strong>神经活动如何在不同的空间和时间尺度上协调</strong>。</li><li><strong>跨频率耦合(Cross-frequency coupling, CFC)</strong> 已被提出在时间和空间尺度上协调神经动力学。<ol><li><strong>时间尺度</strong>：神经振荡之间的相幅耦合。例如，低频振荡的相位可以影响高频振荡的振幅，从而调节神经活动的时序，实现信息处理和集成。</li><li><strong>空间尺度</strong>：神经振荡之间的空间耦合。例如，不同频率范围内的神经振荡可以在不同脑区之间相互调节，形成神经网络，实现信息的传递和整合。</li></ol></li><li><strong>EEG信号的CFC</strong>是指不同频率范围内的神经振荡之间存在相互调节和交互作用的现象。换句话说，CFC实际上是不同频带EEG的幅度/频率/相位之间的关系。<strong>常见的耦合关系如下</strong>：【慢震荡（Slow Oscillation，SO）；快震荡（ Fast Oscillation，FO ）】<ol><li><strong>相位-幅度耦合(phase-amplitude coupling，PAC)</strong>：SO的相位与FO幅度之间的耦合，也称为“嵌套”。目前研究比较多的是θ - γ和α - γ之间的PAC。</li><li><strong>相位-频率耦合(phase- frequency coupling，PFC)</strong>：SO的相位和FO的频率之间的耦合。</li><li><strong>相位-相位耦合(phase-phase coupling，PPC)</strong>：SO和FO相位之间的耦合。</li></ol></li></ol><h2 id="2-cfc在神经疾病中的应用"><a class="markdownIt-Anchor" href="#2-cfc在神经疾病中的应用"></a> 2、CFC在神经疾病中的应用</h2><p>跨频耦合作为一种神经机制，在多种神经疾病中都得到了广泛研究：</p><ol><li><strong>癫痫</strong>：研究表明[1]， 跨频频率耦合是定位癫痫组织的有用生物标志物。</li><li><strong>帕金森病</strong>：研究表明[2]，theta-gamma跨频耦合可以作为帕金森疾病的生物标志，并有助于对帕金森疾病的早期诊断和治疗进行监测。</li><li><strong>精神分裂症</strong>：研究表明[3]， theta-gamma跨频耦合减弱与认知障碍症状的严重程度有关。</li><li><strong>抑郁症</strong>：研究表明[4]，抑郁症患者与健康对照组相比，前额叶皮层的theta-gamma跨频耦合存在显著差异。</li></ol><h2 id="3-cfc常用计算方法"><a class="markdownIt-Anchor" href="#3-cfc常用计算方法"></a> 3、CFC常用计算方法</h2><ol><li><strong>锁相值（phase-locking value，PLV）</strong></li><li><strong>平均向量长度（mean vector length，MVL）</strong></li><li><strong>调制指数（modulation index，MI）</strong></li></ol><h3 id="31-锁相值phase-locking-valueplv"><a class="markdownIt-Anchor" href="#31-锁相值phase-locking-valueplv"></a> 3.1 锁相值（phase-locking value，PLV）</h3><ol><li><strong>定义</strong>：PLV通过比较两个信号的相位差来评估它们之间的同步性。</li><li><strong>计算步骤</strong>：</li><li><strong>计算公式</strong>：</li><li><strong>优点和缺点</strong>：</li><li><strong>python代码实现</strong>：</li></ol><h3 id="32-平均向量长度mean-vector-lengthmvl"><a class="markdownIt-Anchor" href="#32-平均向量长度mean-vector-lengthmvl"></a> 3.2 平均向量长度（mean vector length，MVL）</h3><ol><li><strong>定义</strong>：</li><li><strong>计算步骤</strong>：</li><li><strong>计算公式</strong>：</li><li><strong>优点和缺点</strong>：</li><li><strong>python代码实现</strong>：</li></ol><h3 id="33-调制指数modulation-indexmi"><a class="markdownIt-Anchor" href="#33-调制指数modulation-indexmi"></a> 3.3 调制指数（modulation index，MI）</h3><ol><li><strong>定义</strong>：</li><li><strong>计算步骤</strong>：</li><li><strong>计算公式</strong>：</li><li><strong>优点和缺点</strong>：</li><li><strong>python代码实现</strong>：</li></ol><h2 id="4-置换检验"><a class="markdownIt-Anchor" href="#4-置换检验"></a> 4、置换检验</h2><h2 id="参考文献"><a class="markdownIt-Anchor" href="#参考文献"></a> 参考文献</h2><p>[1] Li, C., et al., 2021. High-frequency hubs of the ictal cross-frequency coupling network predict surgical outcome in epilepsy patients. IEEE Transactions on Neural Systems and Rehabilitation Engineering, 29, pp.1290-1299. (2区)<br />[2] Salimpour, Y. and Anderson, W.S., 2019. Cross-frequency coupling based neuromodulation for treating neurological disorders. Frontiers in neuroscience, 13, p.125. (3区)<br />[3] Musaeus, C.S., et al., 2020. Electroencephalographic cross-frequency coupling as a sign of disease progression in patients with mild cognitive impairment: a pilot study. Frontiers in neuroscience, 14, p.790. (3区)<br />[4] Zhang, W., et al., 2023. Altered fronto-central theta-gamma coupling in major depressive disorder during auditory steady-state responses. Clinical Neurophysiology, 146, pp.65-76. (3区)</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;目的介绍跨频耦合的背景及常用的计算&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#目的介绍跨频耦合的背景及常用的计算&quot;&gt;&lt;/a&gt; 目的：介绍跨频耦合的背景及常用的计算。&lt;/h2&gt;
+&lt;h2 id=&quot;1-背景&quot;&gt;&lt;a class=&quot;mark</summary>
+      
     
     
     
+    <category term="EEG" scheme="https://weisihong9.github.io/categories/EEG/"/>
     
+    
+    <category term="CFC, PLV, MVL, MI" scheme="https://weisihong9.github.io/tags/CFC-PLV-MVL-MI/"/>
     
   </entry>
   
