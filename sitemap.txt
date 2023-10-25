@@ -1,3 +1,4 @@
+https://weisihong9.github.io/2023/10/25/DiGraph/
 https://weisihong9.github.io/2023/07/05/CrossFrequencyCoupling/
 https://weisihong9.github.io/2023/07/03/EEG_TopoMap/
 https://weisihong9.github.io/2023/05/21/EMD/
@@ -10,10 +11,12 @@ https://weisihong9.github.io/about/index.html
 https://weisihong9.github.io/2023/05/20/hello-world/
 https://weisihong9.github.io/
 https://weisihong9.github.io/tags/CFC/
-https://weisihong9.github.io/tags/BEAM/
 https://weisihong9.github.io/tags/EMD/
+https://weisihong9.github.io/tags/BEAM/
 https://weisihong9.github.io/tags/Markdown/
 https://weisihong9.github.io/categories/EEG/
 https://weisihong9.github.io/categories/Signal-processing/
+https://weisihong9.github.io/categories/Graph/
 https://weisihong9.github.io/categories/EEG/BEAM/
 https://weisihong9.github.io/categories/Signal-processing/EMD/
+https://weisihong9.github.io/categories/Graph/EEG/

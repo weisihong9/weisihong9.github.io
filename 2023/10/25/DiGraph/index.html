@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>DiGraph | WeiSH&#39;s BLOG</title>
+  <meta name="description" content="目的：绘制加权有向连接图  1. 用连接边的颜色表示两个节点之间的强度   2. 用边的权重来表示节点连接的强度   参考： https:&#x2F;&#x2F;networkx.org&#x2F;documentation&#x2F;stable&#x2F;auto_examples&#x2F;drawing&#x2F;plot_directed.html https:&#x2F;&#x2F;networkx.org&#x2F;documentation&#x2F;stable&#x2F;reference&#x2F;g">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DiGraph">
+<meta property="og:url" content="https://weisihong9.github.io/2023/10/25/DiGraph/index.html">
+<meta property="og:site_name" content="WeiSH&#39;s BLOG">
+<meta property="og:description" content="目的：绘制加权有向连接图  1. 用连接边的颜色表示两个节点之间的强度   2. 用边的权重来表示节点连接的强度   参考： https:&#x2F;&#x2F;networkx.org&#x2F;documentation&#x2F;stable&#x2F;auto_examples&#x2F;drawing&#x2F;plot_directed.html https:&#x2F;&#x2F;networkx.org&#x2F;documentation&#x2F;stable&#x2F;reference&#x2F;g">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://z1.ax1x.com/2023/10/25/piVrNtK.png">
+<meta property="og:image" content="https://z1.ax1x.com/2023/10/25/piVrtk6.png">
+<meta property="og:image" content="https://z1.ax1x.com/2023/10/25/piVrNtK.png">
+<meta property="og:image" content="https://z1.ax1x.com/2023/10/25/piVrtk6.png">
+<meta property="article:published_time" content="2023-10-24T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-10-25T12:59:19.571Z">
+<meta property="article:author" content="weisihong">
+<meta property="article:tag" content="BEAM">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z1.ax1x.com/2023/10/25/piVrNtK.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://weisihong9.github.io/2023/10/25/DiGraph/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="WeiSH&#39;s BLOG" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body class="main-center theme-purple" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/weisihong9" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Weisihong</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">PhD in progress &amp; BCI</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> XiAn, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook">
+            
+            <i class="icon "></i>
+            
+            <span class="menu-title">menu.guestbook</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/weisihong9" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://weibo.com/u/5126439658" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>别想那么多，我给你点可乐面包吧!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/EEG/">EEG</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/EEG/BEAM/">BEAM</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Graph/">Graph</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Graph/EEG/">EEG</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Signal-processing/">Signal processing</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Signal-processing/EMD/">EMD</a><span class="category-list-count">1</span></li></ul></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BEAM/" rel="tag">BEAM</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CFC/" rel="tag">CFC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/EMD/" rel="tag">EMD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/BEAM/" style="font-size: 14px;">BEAM</a> <a href="/tags/CFC/" style="font-size: 13px;">CFC</a> <a href="/tags/EMD/" style="font-size: 13px;">EMD</a> <a href="/tags/Markdown/" style="font-size: 13px;">Markdown</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Graph/">Graph</a><i class="icon icon-angle-right"></i><a class="category-link" href="/categories/Graph/EEG/">EEG</a>
+              </p>
+              <p class="item-title">
+                <a href="/2023/10/25/DiGraph/" class="title">DiGraph</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2023-10-24T16:00:00.000Z" itemprop="datePublished">2023-10-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/EEG/">EEG</a>
+              </p>
+              <p class="item-title">
+                <a href="/2023/07/05/CrossFrequencyCoupling/" class="title">CrossFrequencyCoupling</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2023-07-05T05:00:49.000Z" itemprop="datePublished">2023-07-05</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/EEG/">EEG</a><i class="icon icon-angle-right"></i><a class="category-link" href="/categories/EEG/BEAM/">BEAM</a>
+              </p>
+              <p class="item-title">
+                <a href="/2023/07/03/EEG_TopoMap/" class="title">EEG_TopoMap</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2023-07-02T16:00:00.000Z" itemprop="datePublished">2023-07-03</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2023/05/21/Using_Markdown_writing/" class="title">Using_Markdown_writing</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2023-05-21T08:54:43.000Z" itemprop="datePublished">2023-05-21</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Signal-processing/">Signal processing</a><i class="icon icon-angle-right"></i><a class="category-link" href="/categories/Signal-processing/EMD/">EMD</a>
+              </p>
+              <p class="item-title">
+                <a href="/2023/05/21/EMD/" class="title">EMD</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2023-05-20T16:58:43.000Z" itemprop="datePublished">2023-05-21</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-DiGraph" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      DiGraph
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2023/10/25/DiGraph/" class="article-date">
+	  <time datetime="2023-10-24T16:00:00.000Z" itemprop="datePublished">2023-10-25</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/Graph/">Graph</a>►<a class="article-category-link" href="/categories/Graph/EEG/">EEG</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/BEAM/" rel="tag">BEAM</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2023/10/25/DiGraph/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="目的绘制加权有向连接图"><a class="markdownIt-Anchor" href="#目的绘制加权有向连接图"></a> 目的：绘制加权有向连接图</h2>
+<h3 id="1-用连接边的颜色表示两个节点之间的强度"><a class="markdownIt-Anchor" href="#1-用连接边的颜色表示两个节点之间的强度"></a> 1. 用连接边的颜色表示两个节点之间的强度</h3>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/piVrNtK"><img src="https://z1.ax1x.com/2023/10/25/piVrNtK.png" alt="piVrNtK.png" /></a></p>
+<h3 id="2-用边的权重来表示节点连接的强度"><a class="markdownIt-Anchor" href="#2-用边的权重来表示节点连接的强度"></a> 2. 用边的权重来表示节点连接的强度</h3>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/piVrtk6"><img src="https://z1.ax1x.com/2023/10/25/piVrtk6.png" alt="piVrtk6.png" /></a></p>
+<h3 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考：</h3>
+<p><a target="_blank" rel="noopener" href="https://networkx.org/documentation/stable/auto_examples/drawing/plot_directed.html">https://networkx.org/documentation/stable/auto_examples/drawing/plot_directed.html</a><br />
+<a target="_blank" rel="noopener" href="https://networkx.org/documentation/stable/reference/generated/networkx.drawing.nx_pylab.draw_networkx.html">https://networkx.org/documentation/stable/reference/generated/networkx.drawing.nx_pylab.draw_networkx.html</a></p>
+<h3 id="0-加载python库"><a class="markdownIt-Anchor" href="#0-加载python库"></a> 0. 加载python库</h3>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.<span class="property">pyplot</span> <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> networkx <span class="keyword">as</span> nx</span><br><span class="line"><span class="keyword">import</span> matplotlib <span class="keyword">as</span> mpl</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></table></figure>
+<h3 id="1-用连接边的颜色表示两个节点之间的强度-2"><a class="markdownIt-Anchor" href="#1-用连接边的颜色表示两个节点之间的强度-2"></a> 1. 用连接边的颜色表示两个节点之间的强度</h3>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;</span><span class="string">&#x27;0. 自己的权重值矩阵&#x27;</span><span class="string">&#x27;&#x27;</span></span><br><span class="line">value_new=[[<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.013</span>],</span><br><span class="line">       [<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.013</span>],</span><br><span class="line">       [<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.013</span>],</span><br><span class="line">       [<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>],</span><br><span class="line">       [<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>],</span><br><span class="line">       [<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.005</span>,<span class="number">0.</span>],</span><br><span class="line">       [<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.007</span>,<span class="number">0.</span>,<span class="number">0.008</span>],</span><br><span class="line">       [<span class="number">0.011</span>,<span class="number">0.013</span>,<span class="number">0.</span>,<span class="number">0.012</span>,<span class="number">0.</span>,<span class="number">0.01</span>,<span class="number">0.009</span>,<span class="number">0.016</span>]]</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;</span><span class="string">&#x27; 1. 初始化图&#x27;</span><span class="string">&#x27;&#x27;</span> </span><br><span class="line">G = nx.<span class="title class_">MultiDiGraph</span>()</span><br><span class="line">pos = nx.<span class="title function_">spring_layout</span>(G)</span><br><span class="line"></span><br><span class="line"># 设置节点名称</span><br><span class="line">row = np.<span class="title function_">array</span>([<span class="string">&#x27;FL&#x27;</span>,<span class="string">&#x27;FM&#x27;</span>,<span class="string">&#x27;FR&#x27;</span>,<span class="string">&#x27;TL&#x27;</span>,<span class="string">&#x27;TR&#x27;</span>,<span class="string">&#x27;C&#x27;</span>,<span class="string">&#x27;P&#x27;</span>,<span class="string">&#x27;O&#x27;</span>])</span><br><span class="line">G.<span class="title function_">add_nodes_from</span>([<span class="string">&#x27;FL&#x27;</span>,<span class="string">&#x27;FM&#x27;</span>,<span class="string">&#x27;FR&#x27;</span>,<span class="string">&#x27;TL&#x27;</span>,<span class="string">&#x27;TR&#x27;</span>,<span class="string">&#x27;C&#x27;</span>,<span class="string">&#x27;P&#x27;</span>,<span class="string">&#x27;O&#x27;</span>])</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;</span><span class="string">&#x27; 2. 将节点的连接边权重加入构建的图&#x27;</span><span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> j <span class="keyword">in</span> <span class="title function_">range</span>(<span class="number">0</span>,<span class="number">8</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="title function_">range</span>(<span class="number">0</span>,<span class="number">8</span>):</span><br><span class="line">        <span class="keyword">if</span> value_new[i][j] != <span class="number">0</span>:</span><br><span class="line">            G.<span class="title function_">add_weighted_edges_from</span>([(row[j],row[i],value_new[i][j])])#边的起点，终点，权重    </span><br><span class="line">        <span class="attr">else</span>:</span><br><span class="line">            pass</span><br><span class="line">        </span><br><span class="line"><span class="string">&#x27;&#x27;</span><span class="string">&#x27; 3. 节点的设置 &#x27;</span><span class="string">&#x27;&#x27;</span>        </span><br><span class="line"># 节点大小        </span><br><span class="line">node_sizes = [<span class="number">1000</span>,<span class="number">1000</span>,<span class="number">1000</span>,<span class="number">1000</span>,<span class="number">1000</span>,<span class="number">1000</span>,<span class="number">1000</span>,<span class="number">1000</span>]</span><br><span class="line"># 节点颜色</span><br><span class="line">node_color = [<span class="string">&#x27;g&#x27;</span>,<span class="string">&#x27;g&#x27;</span>,<span class="string">&#x27;g&#x27;</span>,<span class="string">&#x27;g&#x27;</span>,<span class="string">&#x27;g&#x27;</span>,<span class="string">&#x27;g&#x27;</span>,<span class="string">&#x27;g&#x27;</span>,<span class="string">&#x27;g&#x27;</span>]</span><br><span class="line"># 设置节点位置</span><br><span class="line">pos=&#123;<span class="string">&#x27;FL&#x27;</span>:(<span class="number">38</span>,<span class="number">75</span>),<span class="string">&#x27;FM&#x27;</span>:(<span class="number">40</span>,<span class="number">80</span>),<span class="string">&#x27;FR&#x27;</span>:(<span class="number">42</span>,<span class="number">75</span>),</span><br><span class="line">     <span class="string">&#x27;TL&#x27;</span>:(<span class="number">37</span>,<span class="number">64</span>),<span class="string">&#x27;C&#x27;</span>:(<span class="number">40</span>,<span class="number">65</span>), <span class="string">&#x27;TR&#x27;</span>:(<span class="number">43</span>,<span class="number">64</span>),</span><br><span class="line">     <span class="string">&#x27;P&#x27;</span>:(<span class="number">38</span>,<span class="number">53</span>),<span class="string">&#x27;O&#x27;</span>:(<span class="number">42</span>,<span class="number">53</span>)&#125;</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;</span><span class="string">&#x27; 4. 边的颜色:  用连接边的颜色表示两个节点之间的强度/ 可以用边的权重来表示节点连接的强度 &#x27;</span><span class="string">&#x27;&#x27;</span></span><br><span class="line">edge_colors=[<span class="title function_">float</span>(v[<span class="string">&#x27;weight&#x27;</span>]) <span class="keyword">for</span> (r,c,v) <span class="keyword">in</span> G.<span class="title function_">edges</span>(data=<span class="title class_">True</span>)]  </span><br><span class="line">cmap = plt.<span class="property">cm</span>.<span class="property">jet</span>  # jet、viridis、plasma、inferno、magma、cividis...</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;</span><span class="string">&#x27; 5. 绘图 &#x27;</span><span class="string">&#x27;&#x27;</span> </span><br><span class="line"># 绘制节点</span><br><span class="line">nx.<span class="title function_">draw_networkx_nodes</span>(G,pos,</span><br><span class="line">                       node_size=node_sizes,</span><br><span class="line">                       #node_color=node_color,</span><br><span class="line">                       alpha=<span class="number">0.4</span></span><br><span class="line">                      )</span><br><span class="line"># 节点字体大小</span><br><span class="line">nx.<span class="title function_">draw_networkx_labels</span>(G,pos,font_size=<span class="number">15</span>)</span><br><span class="line"></span><br><span class="line"># 绘制连接边</span><br><span class="line">edges = nx.<span class="title function_">draw_networkx_edges</span>(G,pos,</span><br><span class="line">        edge_color = edge_colors, </span><br><span class="line">        #alpha=<span class="number">0.5</span>,  # 透明度</span><br><span class="line">        edge_cmap = cmap,</span><br><span class="line">        connectionstyle=<span class="string">&#x27;arc3, rad = 0.25&#x27;</span>,  # arc控制双向，rad调线条弧度</span><br><span class="line">        width=<span class="number">5</span>,</span><br><span class="line">       )</span><br><span class="line"></span><br><span class="line">pc = mpl.<span class="property">collections</span>.<span class="title class_">PatchCollection</span>(edges, cmap=cmap)</span><br><span class="line"># 显示colorbar</span><br><span class="line">pc.<span class="title function_">set_array</span>(edge_colors)</span><br><span class="line"></span><br><span class="line">ax = plt.<span class="title function_">gca</span>()</span><br><span class="line">ax.<span class="title function_">set_axis_off</span>()</span><br><span class="line">plt.<span class="title function_">colorbar</span>(pc, ax=ax)</span><br><span class="line"># 保存图片</span><br><span class="line">plt.<span class="title function_">title</span>(<span class="string">&#x27;Weighted directed connected graph (colour of edges)&#x27;</span>)</span><br><span class="line">plt.<span class="title function_">savefig</span>(<span class="string">&quot;CE_Graph.png&quot;</span>,dpi=<span class="number">600</span>, bbox_inches=<span class="string">&#x27;tight&#x27;</span>)</span><br><span class="line">plt.<span class="title function_">show</span>()</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/piVrNtK"><img src="https://z1.ax1x.com/2023/10/25/piVrNtK.png" alt="piVrNtK.png" /></a></p>
+<h3 id="2-用边的权重来表示节点连接的强度-2"><a class="markdownIt-Anchor" href="#2-用边的权重来表示节点连接的强度-2"></a> 2. 用边的权重来表示节点连接的强度</h3>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;</span><span class="string">&#x27;0. 自己的权重值矩阵&#x27;</span><span class="string">&#x27;&#x27;</span></span><br><span class="line">value_new=[[<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.013</span>],</span><br><span class="line">       [<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.013</span>],</span><br><span class="line">       [<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.013</span>],</span><br><span class="line">       [<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>],</span><br><span class="line">       [<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>],</span><br><span class="line">       [<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.005</span>,<span class="number">0.</span>],</span><br><span class="line">       [<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.007</span>,<span class="number">0.</span>,<span class="number">0.008</span>],</span><br><span class="line">       [<span class="number">0.011</span>,<span class="number">0.013</span>,<span class="number">0.</span>,<span class="number">0.012</span>,<span class="number">0.</span>,<span class="number">0.01</span>,<span class="number">0.009</span>,<span class="number">0.016</span>]]</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;</span><span class="string">&#x27; 1. 初始化图&#x27;</span><span class="string">&#x27;&#x27;</span> </span><br><span class="line">G = nx.<span class="title class_">MultiDiGraph</span>()</span><br><span class="line">pos = nx.<span class="title function_">spring_layout</span>(G)</span><br><span class="line"></span><br><span class="line">row = np.<span class="title function_">array</span>([<span class="string">&#x27;FL&#x27;</span>,<span class="string">&#x27;FM&#x27;</span>,<span class="string">&#x27;FR&#x27;</span>,<span class="string">&#x27;TL&#x27;</span>,<span class="string">&#x27;TR&#x27;</span>,<span class="string">&#x27;C&#x27;</span>,<span class="string">&#x27;P&#x27;</span>,<span class="string">&#x27;O&#x27;</span>])</span><br><span class="line">G.<span class="title function_">add_nodes_from</span>([<span class="string">&#x27;FL&#x27;</span>,<span class="string">&#x27;FM&#x27;</span>,<span class="string">&#x27;FR&#x27;</span>,<span class="string">&#x27;TL&#x27;</span>,<span class="string">&#x27;TR&#x27;</span>,<span class="string">&#x27;C&#x27;</span>,<span class="string">&#x27;P&#x27;</span>,<span class="string">&#x27;O&#x27;</span>])</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;</span><span class="string">&#x27; 2. 将节点的连接边权重加入构建的图&#x27;</span><span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> j <span class="keyword">in</span> <span class="title function_">range</span>(<span class="number">0</span>,<span class="number">8</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="title function_">range</span>(<span class="number">0</span>,<span class="number">8</span>):</span><br><span class="line">        <span class="keyword">if</span> value_new[i][j] != <span class="number">0</span>:</span><br><span class="line">            G.<span class="title function_">add_weighted_edges_from</span>([(row[j],row[i],value_new[i][j]*<span class="number">300</span>)]) # 边的起点，终点，权重 ，因为我的权重实在太小了，所以整体扩大<span class="number">300</span>倍   </span><br><span class="line">        <span class="attr">else</span>:</span><br><span class="line">            pass</span><br><span class="line">        </span><br><span class="line"><span class="string">&#x27;&#x27;</span><span class="string">&#x27; 3. 节点的设置 &#x27;</span><span class="string">&#x27;&#x27;</span>        </span><br><span class="line"># 节点大小        </span><br><span class="line">node_sizes = [<span class="number">1000</span>,<span class="number">1000</span>,<span class="number">1000</span>,<span class="number">1000</span>,<span class="number">1000</span>,<span class="number">1000</span>,<span class="number">1000</span>,<span class="number">1000</span>]</span><br><span class="line"># 节点颜色</span><br><span class="line">node_color = [<span class="string">&#x27;g&#x27;</span>,<span class="string">&#x27;g&#x27;</span>,<span class="string">&#x27;g&#x27;</span>,<span class="string">&#x27;g&#x27;</span>,<span class="string">&#x27;g&#x27;</span>,<span class="string">&#x27;g&#x27;</span>,<span class="string">&#x27;g&#x27;</span>,<span class="string">&#x27;g&#x27;</span>]</span><br><span class="line"># 设置节点位置</span><br><span class="line">pos=&#123;<span class="string">&#x27;FL&#x27;</span>:(<span class="number">38</span>,<span class="number">75</span>),<span class="string">&#x27;FM&#x27;</span>:(<span class="number">40</span>,<span class="number">80</span>),<span class="string">&#x27;FR&#x27;</span>:(<span class="number">42</span>,<span class="number">75</span>),</span><br><span class="line">     <span class="string">&#x27;TL&#x27;</span>:(<span class="number">37</span>,<span class="number">64</span>),<span class="string">&#x27;C&#x27;</span>:(<span class="number">40</span>,<span class="number">65</span>), <span class="string">&#x27;TR&#x27;</span>:(<span class="number">43</span>,<span class="number">64</span>),</span><br><span class="line">     <span class="string">&#x27;P&#x27;</span>:(<span class="number">38</span>,<span class="number">53</span>),<span class="string">&#x27;O&#x27;</span>:(<span class="number">42</span>,<span class="number">53</span>)&#125;</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;</span><span class="string">&#x27; 4. 边的颜色:  用连接边的颜色表示两个节点之间的强度/ 可以用边的权重来表示节点连接的强度 &#x27;</span><span class="string">&#x27;&#x27;</span></span><br><span class="line">weight=[<span class="title function_">float</span>(v[<span class="string">&#x27;weight&#x27;</span>]) <span class="keyword">for</span> (r,c,v) <span class="keyword">in</span> G.<span class="title function_">edges</span>(data=<span class="title class_">True</span>)]  </span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;</span><span class="string">&#x27; 5. 绘图 &#x27;</span><span class="string">&#x27;&#x27;</span> </span><br><span class="line"># 绘制节点</span><br><span class="line">nx.<span class="title function_">draw_networkx_nodes</span>(G,pos,</span><br><span class="line">                       node_size=node_sizes,</span><br><span class="line">                       #node_color=node_color,</span><br><span class="line">                       alpha=<span class="number">0.4</span></span><br><span class="line">                      )</span><br><span class="line"># 节点字体大小</span><br><span class="line">nx.<span class="title function_">draw_networkx_labels</span>(G,pos,font_size=<span class="number">15</span>)</span><br><span class="line"></span><br><span class="line"># 绘制连接边</span><br><span class="line">edges = nx.<span class="title function_">draw_networkx_edges</span>(G,pos,</span><br><span class="line">        edge_color = <span class="string">&#x27;lightseagreen&#x27;</span>, </span><br><span class="line">        #alpha=<span class="number">0.5</span>,  # 透明度</span><br><span class="line">        edge_cmap = cmap,</span><br><span class="line">        connectionstyle=<span class="string">&#x27;arc3, rad = 0.25&#x27;</span>,  # arc控制双向，rad调线条弧度</span><br><span class="line">        width=weight</span><br><span class="line">       )</span><br><span class="line"># 保存图片</span><br><span class="line">plt.<span class="title function_">savefig</span>(<span class="string">&quot;SE_Graph.png&quot;</span>,dpi=<span class="number">600</span>, bbox_inches=<span class="string">&#x27;tight&#x27;</span>)</span><br><span class="line">plt.<span class="title function_">show</span>()</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/piVrtk6"><img src="https://z1.ax1x.com/2023/10/25/piVrtk6.png" alt="piVrtk6.png" /></a></p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://weisihong9.github.io/2023/10/25/DiGraph/" title="DiGraph" target="_blank" rel="external">https://weisihong9.github.io/2023/10/25/DiGraph/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/weisihong9" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/weisihong9" target="_blank"><span class="text-dark">Weisihong</span><small class="ml-1x">PhD in progress &amp; BCI</small></a></h3>
+        <div>Happy Researching!</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2023/07/05/CrossFrequencyCoupling/" title="CrossFrequencyCoupling"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/weisihong9" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://weibo.com/u/5126439658" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: 'sfEShlcrxC5OYRH2L0fO0eCB-gzGzoHsz',
+    appKey: 'yQunRVvOFxisXZkxAueYH7p3',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>
