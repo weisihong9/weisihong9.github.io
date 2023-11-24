@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://weisihong9.github.io/2023/11/23/BrainNetwork/</loc>
+    <loc>https://weisihong9.github.io/2023/05/21/Using_Markdown_writing/</loc>
     
     <lastmod>2023-11-24</lastmod>
     
@@ -11,7 +11,7 @@
   </url>
   
   <url>
-    <loc>https://weisihong9.github.io/2023/05/21/Using_Markdown_writing/</loc>
+    <loc>https://weisihong9.github.io/2023/11/24/BrainNetwork/</loc>
     
     <lastmod>2023-11-24</lastmod>
     
@@ -170,7 +170,7 @@
   </url>
   
   <url>
-    <loc>https://weisihong9.github.io/categories/EEG/BEAM/</loc>
+    <loc>https://weisihong9.github.io/categories/Signal-processing/</loc>
     <lastmod>2023-11-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -184,7 +184,7 @@
   </url>
   
   <url>
-    <loc>https://weisihong9.github.io/categories/Signal-processing/</loc>
+    <loc>https://weisihong9.github.io/categories/EEG/BEAM/</loc>
     <lastmod>2023-11-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
