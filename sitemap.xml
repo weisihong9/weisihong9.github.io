@@ -2,9 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://weisihong9.github.io/2024/05/15/MNE_EEG/</loc>
+    
+    <lastmod>2024-05-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://weisihong9.github.io/2023/05/21/Using_Markdown_writing/</loc>
     
-    <lastmod>2023-11-24</lastmod>
+    <lastmod>2024-05-15</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -112,7 +121,7 @@
 
   <url>
     <loc>https://weisihong9.github.io/</loc>
-    <lastmod>2023-11-24</lastmod>
+    <lastmod>2024-06-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -120,35 +129,42 @@
   
   <url>
     <loc>https://weisihong9.github.io/tags/FBN/</loc>
-    <lastmod>2023-11-24</lastmod>
+    <lastmod>2024-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://weisihong9.github.io/tags/CFC/</loc>
-    <lastmod>2023-11-24</lastmod>
+    <lastmod>2024-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://weisihong9.github.io/tags/BEAM/</loc>
-    <lastmod>2023-11-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://weisihong9.github.io/tags/EMD/</loc>
-    <lastmod>2023-11-24</lastmod>
+    <lastmod>2024-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://weisihong9.github.io/tags/Markdown/</loc>
-    <lastmod>2023-11-24</lastmod>
+    <lastmod>2024-06-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://weisihong9.github.io/tags/EMD/</loc>
+    <lastmod>2024-06-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://weisihong9.github.io/tags/ERSP/</loc>
+    <lastmod>2024-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -157,49 +173,56 @@
   
   <url>
     <loc>https://weisihong9.github.io/categories/EEG/</loc>
-    <lastmod>2023-11-24</lastmod>
+    <lastmod>2024-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://weisihong9.github.io/categories/Graph/</loc>
-    <lastmod>2023-11-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://weisihong9.github.io/categories/Signal-processing/</loc>
-    <lastmod>2023-11-24</lastmod>
+    <lastmod>2024-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://weisihong9.github.io/categories/EEG/FBN/</loc>
-    <lastmod>2023-11-24</lastmod>
+    <lastmod>2024-06-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://weisihong9.github.io/categories/Signal-processing/</loc>
+    <lastmod>2024-06-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://weisihong9.github.io/categories/EEG/ERSP/</loc>
+    <lastmod>2024-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://weisihong9.github.io/categories/EEG/BEAM/</loc>
-    <lastmod>2023-11-24</lastmod>
+    <lastmod>2024-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://weisihong9.github.io/categories/Graph/EEG/</loc>
-    <lastmod>2023-11-24</lastmod>
+    <lastmod>2024-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://weisihong9.github.io/categories/Signal-processing/EMD/</loc>
-    <lastmod>2023-11-24</lastmod>
+    <lastmod>2024-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
